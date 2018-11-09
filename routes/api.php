@@ -13,6 +13,14 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1'], function (){
+
+    require_once (generate_path_to_module_route('Authentication', 'api'));
+    Route::middleware('auth:api')->group(function (){
+        require_once (generate_path_to_module_route('Designs', 'api'));
+    });
+//    Route::middleware('auth:api')->get('/user', function (Request $request) {
+//        return $request->user();
+//    });
 });
+

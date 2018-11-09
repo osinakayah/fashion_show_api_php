@@ -9,7 +9,9 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/passport": "^7.0",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "shalvah/laravel-jsend": "^1.1",
+        "spatie/laravel-tags": "^2.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.5",
@@ -25,8 +27,12 @@
             "database/seeds",
             "database/factories"
         ],
+        "files":[
+            "Monary/helpers/helpers.php"
+        ],
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Monary\\": "Monary/"
         }
     },
     "autoload-dev": {
