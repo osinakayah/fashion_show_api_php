@@ -9,20 +9,23 @@
 namespace Monary\Modules\Authentication\Repositories;
 
 use App\User;
+use Spatie\Tags\Tag;
 
 class RegisterRepository
 {
     public function registerUser(array $userData) {
         $token = mt_rand(100000, 999999);
-        $newUser = new User();
-        $newUser->name = $userData['name'];
-        $newUser->unique_identifier = $userData['unique_identifier'];
-        $newUser->user_token = $token;
-        $newUser->password = bcrypt($userData['password']);
-        $newUser->attachTag(config('monary_tags.unisex'));
+        $newUser = User::create([
+            'name' => $userData['name'],
+            'unique_identifier' => $userData['unique_identifier'],
+            'user_token' => $token,
+            'password' => bcrypt($userData['password']),
+            'tags' => [config('monary_tags.unisex'), config('monary_tags.women'),],
+        ]);
+
         if ($newUser->save()) {
-            $this->sendVerificationCode($userData['unique_identifier'], $userData['name'], $token);
-            return ['status' => true, 'message' => 'User account created successfully'];
+            //$this->sendVerificationCode($userData['unique_identifier'], $userData['name'], $token);
+            return ['status' => true, 'message' => 'User account created successfully', 'token' => $token];
         }
         else {
             return ['status' => false, 'message' => 'An error occurred, please try again later'];

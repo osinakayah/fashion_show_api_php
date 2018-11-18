@@ -37,10 +37,10 @@ class RegisterController extends Controller
         $repository = new RegisterRepository();
         $avtivationResult = $repository->activateUser($token);
         if ($avtivationResult['status']) {
-            return jsend_success($avtivationResult['message']);
+            return jsend_success($avtivationResult);
         }
         else {
-            return jsend_fail($avtivationResult['message']);
+            return jsend_fail($avtivationResult);
         }
     }
 }

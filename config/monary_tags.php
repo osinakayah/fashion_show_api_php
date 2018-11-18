@@ -7,7 +7,7 @@
  */
 
 return [
-    'unisex' => 1,
-    'men' => 2,
-    'females' => 3
+    'unisex' => 'unisex',
+    'men' => 'men',
+    'women' => 'women'
 ];
